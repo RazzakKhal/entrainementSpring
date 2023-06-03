@@ -12,7 +12,7 @@ public class School {
 
     private String name;
 
-    @OneToMany(mappedBy = "school", cascade = CascadeType.REFRESH)
+    @OneToMany(mappedBy = "school", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     private List<MyUser> users;
 
 
