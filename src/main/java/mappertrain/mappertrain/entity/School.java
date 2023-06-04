@@ -2,6 +2,7 @@ package mappertrain.mappertrain.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,7 +13,7 @@ public class School {
 
     private String name;
 
-    @OneToMany(mappedBy = "school", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "school", cascade = CascadeType.REFRESH)
     private List<MyUser> users;
 
 

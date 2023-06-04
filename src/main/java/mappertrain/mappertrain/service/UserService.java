@@ -20,4 +20,9 @@ public class UserService {
         myUserRepository.save(user);
         return user;
     }
+
+    public String deleteUser(Long id){
+        myUserRepository.deleteById(id);
+        return "Utilisateur supprimé";
+    }
 }

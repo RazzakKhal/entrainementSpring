@@ -23,4 +23,9 @@ public class SchoolService {
         }
 
     }
+
+    public String deleteSchool(Long id){
+        schoolRepository.deleteById(id);
+        return "Ecole supprimée";
+    }
 }

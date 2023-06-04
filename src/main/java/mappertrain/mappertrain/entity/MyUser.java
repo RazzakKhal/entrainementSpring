@@ -1,7 +1,9 @@
 package mappertrain.mappertrain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,11 +18,12 @@ public class MyUser {
     private String lastname;
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Picture> pictures;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Roles> roles;
+    private List<Roles> roles = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     @JoinColumn(name = "school_id")
     private School school;
 
@@ -28,6 +31,16 @@ public class MyUser {
     }
 
     public MyUser(String mail, String firstname, String lastname, List<Picture> pictures, List<Roles> roles, School school) {
+        this.mail = mail;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.pictures = pictures;
+        this.roles = roles;
+        this.school = school;
+    }
+
+    public MyUser(Long id, String mail, String firstname, String lastname, List<Picture> pictures, List<Roles> roles, School school) {
+        this.id = id;
         this.mail = mail;
         this.firstname = firstname;
         this.lastname = lastname;

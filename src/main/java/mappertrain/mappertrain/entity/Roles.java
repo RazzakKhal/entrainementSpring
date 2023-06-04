@@ -2,6 +2,7 @@ package mappertrain.mappertrain.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,10 +12,15 @@ public class Roles {
     private Long id;
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
-    private List<MyUser> users;
+    @ManyToMany(mappedBy = "roles", cascade = CascadeType.PERSIST)
+    private List<MyUser> users = new ArrayList<>();
 
     public Roles() {
+    }
+
+    public Roles(String name) {
+        this.name = name;
+
     }
 
     public Roles(String name, List<MyUser> users) {
