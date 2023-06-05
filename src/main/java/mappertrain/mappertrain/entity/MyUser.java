@@ -16,13 +16,12 @@ public class MyUser {
     private String mail;
     private String firstname;
     private String lastname;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Picture> pictures;
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Roles> roles = new ArrayList<>();
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     @JoinColumn(name = "school_id")
     private School school;
@@ -101,4 +100,6 @@ public class MyUser {
     public void setSchool(School school) {
         this.school = school;
     }
+
+
 }

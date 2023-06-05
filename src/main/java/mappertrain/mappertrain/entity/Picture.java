@@ -11,7 +11,7 @@ public class Picture {
 
     private String link;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private MyUser user;
 

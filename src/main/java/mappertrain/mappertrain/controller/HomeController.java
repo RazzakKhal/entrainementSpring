@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -38,6 +40,7 @@ public class HomeController {
 
     @GetMapping("/findAll")
     List<MyUser> returnUser() {
+
         return userService.findAllUsers();
     }
 
@@ -51,6 +54,18 @@ public class HomeController {
         }
     }
 
+
+    // méthode de compréhension du FetchType.LAZY
+    @GetMapping("/findUser2/{id}")
+    String returnOneUser2(@PathVariable Long id) throws NullPointerException {
+        if(myUserRepository.findById(id).isPresent()){
+
+            MyUser user = myUserRepository.findById(id).get();
+            return "test";
+        }else{
+            throw new NullPointerException("Cet utilisateur n'existe pas");
+        }
+    }
     @PostMapping("/createUser")
     MyUser createUser(@RequestBody MyUser user) {
         return userService.createUser(user);

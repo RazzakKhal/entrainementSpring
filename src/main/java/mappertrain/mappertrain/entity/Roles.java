@@ -12,7 +12,7 @@ public class Roles {
     private Long id;
     private String name;
 
-    @ManyToMany(mappedBy = "roles", cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "roles", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<MyUser> users = new ArrayList<>();
 
     public Roles() {
