@@ -29,6 +29,12 @@ public class MyUser {
     public MyUser() {
     }
 
+    public MyUser(String mail, String firstname, String lastname) {
+        this.mail = mail;
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
     public MyUser(String mail, String firstname, String lastname, List<Picture> pictures, List<Roles> roles, School school) {
         this.mail = mail;
         this.firstname = firstname;
@@ -100,6 +106,8 @@ public class MyUser {
     public void setSchool(School school) {
         this.school = school;
     }
+
+
 
 
 }

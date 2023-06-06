@@ -61,6 +61,7 @@ public class HomeController {
         if(myUserRepository.findById(id).isPresent()){
 
             MyUser user = myUserRepository.findById(id).get();
+
             return "test";
         }else{
             throw new NullPointerException("Cet utilisateur n'existe pas");

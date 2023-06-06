@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 
+
 @Service
 public class UserService {
 
@@ -28,5 +29,10 @@ public class UserService {
     public String deleteUser(Long id){
         myUserRepository.deleteById(id);
         return "Utilisateur supprimé";
+    }
+
+    public String isRazzak(String prenom){
+        if(prenom.equals("Razzak")){ return "yes";}
+        return "mince";
     }
 }
