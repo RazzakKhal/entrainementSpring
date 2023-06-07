@@ -12,9 +12,7 @@ import mappertrain.mappertrain.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+
 import java.util.List;
 
 @RestController
@@ -44,11 +42,22 @@ public class HomeController {
         return userService.findAllUsers();
     }
 
-    @GetMapping("/findUser/{id}")
+/*    @GetMapping("/findUser/{id}")
     MyUser returnOneUser(@PathVariable Long id) throws NullPointerException {
         if(userJDBC.findUserById(id).isPresent()){
 
             return userJDBC.findUserById(id).get();
+        }else{
+            throw new NullPointerException("Cet utilisateur n'existe pas");
+        }
+    }
+*/
+
+    @GetMapping("/findUser/{id}")
+    MyUser returnOneUser(@PathVariable Long id) throws NullPointerException {
+        if(myUserRepository.findById(id).isPresent()){
+
+            return myUserRepository.findById(id).get();
         }else{
             throw new NullPointerException("Cet utilisateur n'existe pas");
         }
